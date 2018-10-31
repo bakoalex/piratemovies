@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS directors (
+    director_id SMALLINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (director_id)
+);

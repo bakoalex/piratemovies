@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS actors (
+    actor_id SMALLINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (actor_id)
+);

@@ -17,7 +17,7 @@ import com.mysql.cj.xdevapi.Statement;
 
 public class MovieDao implements Dao<Movie> {
 
-    private static final Logger LOGGER = ConsoleLogger.attach();
+    private static final Logger log = ConsoleLogger.attach();
 
     /**
      * Check if given Movie object is exists in the movies table
@@ -112,7 +112,7 @@ public class MovieDao implements Dao<Movie> {
             return movie;
 
         } catch (SQLException ex) {
-            LOGGER.info("SQL Exception: " + ex.getMessage());
+            log.info("SQL Exception: " + ex.getMessage());
             return null;
         } 
     }
@@ -146,7 +146,7 @@ public class MovieDao implements Dao<Movie> {
             return movies;
 
         } catch (SQLException ex) {
-            LOGGER.info("SQL Exception: " + ex.getMessage());
+            log.info("SQL Exception: " + ex.getMessage());
             return null;
         }
     }
@@ -222,15 +222,15 @@ public class MovieDao implements Dao<Movie> {
             }
 
             PreparedStatement sql = conn.prepareStatement("ASD");
-            LOGGER.finest("Executing SQL Query: " + sql.toString());
+            log.finest("Executing SQL Query: " + sql.toString());
             sql.execute();
             conn.commit();
-            LOGGER.finest("SQL query completed successfully.");
+            log.finest("SQL query completed successfully.");
 
             return 1;
 
         } catch (SQLException ex) {
-            LOGGER.info("SQL Exception: " + ex.getMessage());
+            log.info("SQL Exception: " + ex.getMessage());
             return 0;
         }
     }
@@ -241,16 +241,16 @@ public class MovieDao implements Dao<Movie> {
         Movie originalMovie = get(movie.getMovieId());
 
         if (originalMovie == null) {
-            LOGGER.info("Could not found any macthing movies in the database with the movies_id of " + movie.getMovieId());
+            log.info("Could not found any macthing movies in the database with the movies_id of " + movie.getMovieId());
             return false;
         }
 
         if (movie.equals(originalMovie)) {
-            LOGGER.fine("The same record can be found in the database.");
+            log.fine("The same record can be found in the database.");
             return false;
         }
 
-        LOGGER.finest("Connecting to database...");
+        log.finest("Connecting to database...");
         try (Connection conn = ConnectionFactory.getConnection()) {
 
             conn.setAutoCommit(false);
@@ -272,7 +272,7 @@ public class MovieDao implements Dao<Movie> {
                                                 " SET d.director_name=? " + 
                                                 " WHERE d.director_id=? AND m.movie_id=?;";
 
-            LOGGER.fine("SQL update string is: " + updateSQlString);
+            log.fine("SQL update string is: " + updateSQlString);
 
             PreparedStatement sql = conn.prepareStatement(updateSQlString);
             sql.setString(1, movie.getTitle());
@@ -285,13 +285,13 @@ public class MovieDao implements Dao<Movie> {
             sql.setInt(8, movie.isRented() ? 1 : 0);
             sql.setInt(9, movie.getMovieId());
 
-            LOGGER.finest("Running sql query: " + sql.toString());
+            log.finest("Running sql query: " + sql.toString());
             sql.execute();
             conn.commit();
-            LOGGER.finest("SQL query completed.");
+            log.finest("SQL query completed.");
             
         } catch (SQLException ex) {
-            LOGGER.info("Could not update the movie: " + movie.toString() + ", exception message: " + ex.getMessage());
+            log.info("Could not update the movie: " + movie.toString() + ", exception message: " + ex.getMessage());
             return false;
         }
         return false;

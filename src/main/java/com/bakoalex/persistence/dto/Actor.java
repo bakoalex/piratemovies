@@ -1,4 +1,4 @@
-package com.bakoalex.dto;
+package com.bakoalex.persistence.dto;
 
 import java.util.Objects;
 

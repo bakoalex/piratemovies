@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class ConsoleLogger {
 
     private static Logger logger;
-
+    
     public static final String DB_CONN = "Connecting to database...";
     public static final String DB_CONN_OK = "Connected to database.";
     public static final String DB_CONN_FAIL = "Error when connecting to database: ";

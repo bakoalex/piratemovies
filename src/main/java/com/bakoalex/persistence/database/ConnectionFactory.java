@@ -1,4 +1,4 @@
-package com.bakoalex.database;
+package com.bakoalex.persistence.database;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

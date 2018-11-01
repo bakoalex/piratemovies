@@ -1,6 +1,8 @@
-package com.bakoalex.dto;
+package com.bakoalex.persistence.dto;
 
-public class Director {
+import java.util.Objects;
+
+public class Director implements Comparable<Director> {
     private int directorId;
     private String name;
 
@@ -39,5 +41,24 @@ public class Director {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Director otheDirector) {
+        return this.name.compareTo(otheDirector.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(directorId, name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null) return false;
+        if (!(o instanceof Director)) return false;
+        Director other = (Director) o;
+        return directorId == other.directorId && name.equals(other.name);
     }
 }

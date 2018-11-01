@@ -1,4 +1,4 @@
-package com.bakoalex.dao;
+package com.bakoalex.persistence.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.bakoalex.database.ConnectionFactory;
-import com.bakoalex.dto.MovieActor;
+import com.bakoalex.persistence.database.ConnectionFactory;
+import com.bakoalex.persistence.dto.MovieActor;
 
 public class MovieActorDao {
 

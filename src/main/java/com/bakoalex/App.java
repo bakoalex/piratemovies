@@ -1,12 +1,12 @@
 package com.bakoalex;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import com.bakoalex.dao.DirectorDao;
-import com.bakoalex.dao.MovieDao;
-import com.bakoalex.dto.Director;
-import com.bakoalex.dto.Movie;
+import com.bakoalex.persistence.dao.impl.MovieDao;
+import com.bakoalex.persistence.dto.Actor;
+import com.bakoalex.persistence.dto.Movie;
 
 /**
  * Hello world!
@@ -19,7 +19,20 @@ public class App
         System.out.println("Starting Application.");
 
         MovieDao movieDao = new MovieDao();
-        System.out.println(movieDao.get(1).toString());
+        Movie movie = movieDao.get(1);
+        System.out.println(movie.toString());
+
+        List<Actor> actors = new ArrayList<>();
+        actors.add(new Actor("Keanu Reeves"));
+
+        movie.setTitle("John Wick");
+        movie.setActors(actors);
+        movie.setMovieId(10);
+
+        System.out.println(movie.toString());
+
+        movieDao.insert(movie);
+
 
         System.out.println("Exiting application.");
     }

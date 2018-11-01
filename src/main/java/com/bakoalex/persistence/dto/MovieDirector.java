@@ -1,4 +1,4 @@
-package com.bakoalex.dto;
+package com.bakoalex.persistence.dto;
 
 public class MovieDirector {
     private int movieId, directorId;
